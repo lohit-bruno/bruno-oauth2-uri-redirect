@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      var url = 'bruno://oauth2/callback'
+      url += window.location.search || '';
+      url += window.location.hash || '';
+
+      window.open(url);
+    </script>
+  </head>
+  <body>
+    bruno oauth2 redirect
+  </body>
+</html>
