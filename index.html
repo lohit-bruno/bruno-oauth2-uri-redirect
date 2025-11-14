@@ -17,8 +17,6 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
       }
 
       .container {
@@ -47,22 +45,6 @@
         margin-bottom: 0.5rem;
       }
 
-      .error-message {
-        color: #ffebee;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1rem;
-        border-radius: 8px;
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        line-height: 1.5;
-      }
-
-      .error-message strong {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-      }
-
       .hidden {
         display: none;
       }
@@ -72,42 +54,7 @@
         var url = 'bruno://oauth2/callback';
         url += window.location.search || '';
         url += window.location.hash || '';
-        
-        var popup = window.open(url);
-        var container = document.querySelector('.container');
-        var spinner = document.querySelector('.spinner');
-        var message = document.querySelector('.message');
-        var errorMessage = document.querySelector('.error-message');
-        
-        // Check if popup was blocked
-        setTimeout(function() {
-          try {
-            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-              // Popup was blocked
-              spinner.classList.add('hidden');
-              message.textContent = 'Popup Blocked';
-              message.style.color = '#ffcdd2';
-              errorMessage.classList.remove('hidden');
-            } else {
-              // Popup opened successfully
-              message.textContent = 'Redirecting to Bruno...';
-              // Close this window after a short delay
-              setTimeout(function() {
-                try {
-                  window.close();
-                } catch (e) {
-                  // Window might not be closable if not opened by script
-                }
-              }, 500);
-            }
-          } catch (e) {
-            // Fallback: assume popup was blocked if we can't check
-            spinner.classList.add('hidden');
-            message.textContent = 'Popup Blocked';
-            message.style.color = '#ffcdd2';
-            errorMessage.classList.remove('hidden');
-          }
-        }, 100);
+        window.open(url);
       })();
     </script>
   </head>
@@ -115,10 +62,7 @@
     <div class="container">
       <div class="spinner"></div>
       <div class="message">Redirecting to Bruno...</div>
-      <div class="error-message hidden">
-        <strong>Popup blocked by browser</strong>
-        Please allow popups for this site and try again. Check your browser's address bar for popup blocking indicators.
-      </div>
+      <div>Check if popups are allowed for this site and try again. Check your browser's address bar for popup blocking indicators.</div>
     </div>
   </body>
 </html>
